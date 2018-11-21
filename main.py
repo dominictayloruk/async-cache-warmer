@@ -10,7 +10,7 @@ import argparse
 from tabulate import tabulate
 
 
-parser = argparse.ArgumentParser(description='Asynchronous Magento Cache Warmer')
+parser = argparse.ArgumentParser(description='Asynchronous Cache Warmer')
 parser.add_argument('-s','--site', action="append", dest='sites', default=None)
 parser.add_argument('-l','--limit', action="store", dest='limit', default=None)
 args = parser.parse_args()
@@ -80,8 +80,8 @@ async def warm_it(url):
             print('.', end='', flush=True)
 
 if limit == None:
-    print ("The concurrency limit isn't specified. Setting limit to 150")
-    limit=150
+    print ("The concurrency limit isn't specified. Setting limit to 10 to avoid rate limiting")
+    limit=10
 else:
     print ("Setting concurrency limit to %s" % (limit))
 

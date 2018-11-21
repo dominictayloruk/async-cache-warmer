@@ -1,10 +1,13 @@
-FROM bwits/docker-git-alpine
+FROM yobasystems/alpine:latest
+
+RUN apk add -update git openssh
 
 WORKDIR /tmp/
-RUN git clone https://github.com/jradikk/async-cache-warmer  && rm -rf /tmp/async-cache-warmer/.git
+RUN git clone https://github.com/dominictayloruk/async-cache-warmer  && rm -rf /tmp/async-cache-warmer/.git
 
+yobasystems/alpine:latest
 
-FROM python:3.5-alpine
+RUN apk add -update python py-pip
 
 COPY --from=0 /tmp/async-cache-warmer /root/async-cache-warmer
 WORKDIR /root/async-cache-warmer
